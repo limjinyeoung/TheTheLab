@@ -1,0 +1,13 @@
+inner class
+
+class User {
+	private String name;	//인스턴스 필드 (User의 객체를 생성해야만 쓸 수 있음
+	private int age;
+
+	class Printer {		//static class Printer라면 외부에서 사용할 수 있음. 단, name과 age에 접근 할 수 없다.(객체생성여부가 보장되지 않기 때문에) => static 변수에만 접근가능
+		void print(){};
+	}
+}
+
+Printer 클래스는 User 내에서만 사용할 수 있음..?
+static(정적 필드 = 클래스 필드 = 모든 클래스가 공유) 을 붙이면 외부에서 사용할 수 있음.

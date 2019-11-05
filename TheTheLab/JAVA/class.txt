@@ -1,0 +1,21 @@
+class : 사용자 정의 타임 (C언어의 struct)
+	java의 클래스는 데이터와 데이터를 조작하는 함수를 한번에 관리하는 것이 가능하다.
+	클래스 이름은 반드시 대문자로 시작.
+	자바의 모든 클래스 인스턴스(객체)는 반드시 힙에 생성되어야 한다. (C에서의 malloc -> java의 new)
+	User user = new User() 일 때, user(리퍼런스 변수)는 new User(객체)를 참조한다.
+	User 내의 메소드를 사용하기 위해, user.initUser()로 사용한다.
+	초기화를 위해 생성자를 사용할 수 있다.
+
+class User {
+	string name;   //인스턴스 필드
+	
+	/*
+	void initName(){     //인스턴스 메소드
+		name = "Unnamed";
+	}
+	*/
+
+	User(){			//생성자
+		name = "Unnamed";
+	}
+}

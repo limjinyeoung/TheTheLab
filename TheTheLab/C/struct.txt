@@ -1,0 +1,75 @@
+사용자 정의 타입
+1.struct	(oop의 class)
+
+2.union		(oop의 varient)
+
+3.enum		(oop의 enum)
+
+
+
+
+
+
+구조체 
+- 서로 다른 타입의 변수가 여러 개 필요한 경우 하나의 개념으로 묶어서 관리 => 데이터 캡슐화
+- call by value할 때, 크기에 대한 비용이 발생하기 때문에 포인터 사용
+
+
+
+
+
+
+
+struct user		//타입(int, char)과 비슷한 역할
+{	
+	char name[10];
+	int age;
+};
+
+int main()
+{
+	struct user u;
+}
+
+
+
+혹은
+
+
+
+struct user
+{
+	char name[10];
+	int age;
+};
+typedef struct user User	//struct user라는 타입의 이름을 정의.
+
+int main()
+{
+	User u;
+}
+
+
+
+혹은
+
+
+
+
+typedef struct
+{
+	char name[10];
+	int age;
+} User;
+
+int main()
+{
+	User u;
+}
+
+
+
+구조체와 데이터
+-구조체의 멤버 중 가장 큰 크기를 가지는 필드의 크기로 정렬하는 형태로 구현되어 있다.
+-필드의 메모리 위치는 4의 배수 / 8의 배수로 위치한다.
+-변수마다 남는공간인 padding이 생겨 구조체의 변수의 순서에 따라서 크기가 달라질 수 있다.(효율과는 무관)

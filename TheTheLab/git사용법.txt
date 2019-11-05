@@ -1,0 +1,7 @@
+cd Develop
+cd TIL
+git status
+
+git add 2018.05.29.md           // git add .
+git commit -m "2018.05.29 TIL"
+git push

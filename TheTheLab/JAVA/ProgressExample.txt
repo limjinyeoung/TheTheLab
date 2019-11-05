@@ -1,0 +1,225 @@
+ProgressExample extends PApplet
+	main 
+	settings : 사이즈, uibar생성, 여러 bar 생성(람다)
+	setup : 배경
+	mouseClicked : 모든 view.mouseClicked로 마우스 좌표 넘김.
+	draw : 배경 새로 색칠, 모든 view를 render
+
+import processing.core.PApplet;
+
+import java.util.ArrayList;
+
+public class ProgressExample extends PApplet {
+    public static void main(String[] args) {
+        PApplet.main("ProgressExample");
+    }
+
+
+    private ArrayList<View> ui = new ArrayList<>();
+
+    public void settings() {
+        size(800, 600);
+
+        UIBar bar = new UIBar(this);
+
+        bar.addButton(new Button.OnClickListener() {
+            @Override
+            public void onClick() {
+                System.out.println("큰거");
+            }
+        });
+
+        bar.addButton(() -> System.out.println("작은거"));
+        bar.addButton(() -> System.out.println("1 큰거"));
+        bar.addButton(() -> System.out.println("2 작은거"));
+        bar.addButton(() -> System.out.println("3 큰거"));
+        bar.addButton(() -> System.out.println("4 작은거"));
+        ui.add(bar);
+    }
+
+    public void setup() {
+        background(0);
+
+    }
+
+    public void mouseClicked() {
+
+        for (View view : ui) view.mouseClicked(this.mouseX, this.mouseY);
+    }
+
+    public void draw() {
+        for (View view : ui) view.render();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Button extends View
+	Button
+	OnClickListener : 인터페이스. void onClick()있음. -> 선언
+	setOnClickListener : 셋.
+	render : 박스 렌더링
+	clicked : onClickListener가 있다면 onClick실행, "Click"
+
+
+import processing.core.PApplet;
+
+public class Button extends View {
+    public Button(PApplet pApplet, int x, int y, int width, int height) {
+        super(pApplet, x, y, width, height);
+    }
+
+    public interface OnClickListener {
+        void onClick();
+    }
+
+    private OnClickListener onClickListener;
+
+    public void setOnClickListener(OnClickListener clickListener) {
+        this.onClickListener = clickListener;
+    }
+
+    @Override
+    public void render() {
+        pApplet.fill(255, 70, 255);
+        pApplet.rect(x, y, width, height);
+    }
+
+    @Override
+    public void clicked() {
+        if (onClickListener != null) onClickListener.onClick();
+        System.out.println("Click!");
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UIBar extends View
+	UIBar
+	addButton(Button.OnclickListener onClickListener) : button객체 생성, 
+		리스트에 추가, setOnClickListener에 매개변수로 온 onClickListener를 셋.
+	render : UIBar 렌더링, 모든 박스 렌더링
+	mouseClicked : 모든 버튼에 대해 mouseClicked로 충돌검사
+	clicked 
+
+
+import processing.core.PApplet;
+
+import java.util.ArrayList;
+
+public class UIBar extends View {
+
+    public UIBar(PApplet pApplet) {
+        super(pApplet, 0, 0, 800, 50);
+    }
+
+    private ArrayList<View> buttons = new ArrayList<>();
+
+    public void addButton(Button.OnClickListener onClickListener) {
+        Button btn = new Button(this.pApplet, 10 + 40 * buttons.size(), 10, 30, 30);
+        btn.setOnClickListener(onClickListener);
+        this.buttons.add(btn);
+    }
+
+    @Override
+    public void render() {
+        this.pApplet.fill(255);
+        this.pApplet.rect(0, 0, width, 50);
+
+        for (View view : buttons) view.render();
+    }
+
+    public void mouseClicked(int x, int y) {
+        super.mouseClicked(x, y);
+        for (View view : buttons) view.mouseClicked(x, y);
+    }
+
+    @Override
+    public void clicked() {
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+View 
+	render(), clicked() : abstract
+	mouseClicked : x, y를 받아 isCollision를 하고, 충돌된다고 판단하면 clicked실행
+	isCollision : x,y를 받아 충돌검사한 결과를 리턴
+
+
+
+import processing.core.PApplet;
+
+public abstract class View {
+    protected int x, y;
+    protected int width, height;
+    protected PApplet pApplet;
+
+    public View(PApplet pApplet, int x, int y, int width, int height) {
+        this.pApplet = pApplet;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    public abstract void render();
+
+    public abstract void clicked();
+
+    public void mouseClicked(int x, int y) {
+        if (isCollision(x, y)) clicked();
+    }
+
+    private boolean isCollision(int x, int y) {
+        return x > this.x && x < this.x + this.width
+                && y > this.y && y < this.y + this.height;
+    }
+
+
+}

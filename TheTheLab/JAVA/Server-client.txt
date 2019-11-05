@@ -1,0 +1,39 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Client {
+    public static void main(String[] args) throws IOException {
+        Socket socket = new Socket();                                               //소켓 만들기
+        InetSocketAddress endpoint = new InetSocketAddress("localhost", 5000);      // 어느 소켓에 연결할 지 어드레스 객체 생성
+        socket.connect(endpoint);                                                   // 소켓과 연결 시도
+
+        OutputStream os = socket.getOutputStream();                                 //소켓을 통해 보낼 os
+        InputStream is = socket.getInputStream();                                   //소켓을 통해 받은 is
+
+        int len;
+        byte[] buf = new byte[128];                                                 //byte[]의 형태로 buf 선언.
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNext()) {                                                 //scanner에 입력이 있는동안 아래 반복.
+            String line = scanner.nextLine();                                       //scanner에서 입력한 String을 line에 저장
+
+            os.write(line.getBytes());                                              //line을 byte형태로 바꾸어 소켓을 통해 보냄.
+            len = is.read(buf);                                                     //소켓을 통해 온 데이터를 buf에 저장하여
+
+            if (len == -1)                                                          //입력 종료가 되지 않는 한
+                break;
+
+            String s = new String(buf, 0, len);                                     //buf를 String 형태의 s에 저장하여
+            System.out.println("from server: " + s);                                //출력한다.
+        }
+
+    }
+}
+
+
+
+

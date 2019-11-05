@@ -1,0 +1,8 @@
+메소드 레퍼런스
+:람다를 만들 때 인자의 형태가 그대로 다른 함수로 전달 될 경우 사용
+
+Arrays.sort(arr, (Integer o1, Integer o2) -> Integer.compare(o1, o2));
+
+Arrays.sort(arr, Integer::compare);
+
+실화입니까?

@@ -1,0 +1,4 @@
+exception
+
+checked exception : 반드시 사용자가 예외 처리를 하던가, 외부로 던져야 한다.
+unchecked exception : 예외처리를 하지 않아도 되지만, 예외 발생시 프로그램이 종료된다.

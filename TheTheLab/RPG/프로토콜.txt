@@ -1,0 +1,109 @@
+// Client -> Server
+// 처음에 접속할 때
+{
+"type" : "Join",
+"body" : {
+"user" : String,
+}
+}
+
+// 이동
+{
+"type" : "Move",
+"body" : {
+"direction" : String
+}
+}
+
+// 공격
+{
+"type" : "Attack"
+}
+
+// 멈춤
+{
+"type" : "Stop"
+}
+
+
+
+
+
+
+// Server -> Client
+// 공격 당함 
+{
+"type" : "Hit",
+"body" : {
+"from" : String,
+"to": String,
+"damage" : int
+}
+}
+
+// 사망 이벤트
+{
+"type" : "Kill",
+"body" : {
+"from" : String,
+"to": String
+}
+}
+
+{
+"type" : "ItemCreate",
+"body" : {
+"item": String,
+"x" : float,
+"y" : float
+}
+}
+
+{
+"type" : "ItemConsume",
+"body" : {
+"user" : String,
+"item" : String
+}
+}
+
+{
+"type" : "Map",
+"body" : {
+"map" : int[],
+}
+}
+
+// Update - 10 프레임
+// 1. 각 유저 상태
+{
+	"type": "Update",
+	"users": [
+		{
+			"user": String,
+			"x": float,
+			"y": float,
+			"hp": int,
+			"direction": String,
+			"score": int,
+			"state": String,// "STOP", "MOVE"
+		},
+		{
+			"user": String,
+			"x": float,
+			"y": float,
+			"hp": int,
+			"direction": String,
+			"score": int
+		}
+	]
+}
+
+
+
+
+
+
+Map : int[]형이어야 하며, 
+0 => 맵
+1 => 힐 아이템으로 구분.

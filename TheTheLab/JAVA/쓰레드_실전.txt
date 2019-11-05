@@ -1,0 +1,33 @@
+InputStream is = socket.getInputStream();
+
+byte[] buf = new byte[128];
+while (true) {
+	int len = is.read(buf);
+	if (len == -1)
+		break;
+}
+
+if (listener != null)
+	listener.onDisconnect();
+
+
+
+
+listener는 인터페이스. 인터페이스!!!!!
+
+
+
+
+
+run에서는 sleep하고 단어를 보내주기
+
+
+스레드 안정성 : 여러개의 스레드가 동시에 동일한 객체의 메소드를 호출할 경우 정상적으로 동작하는가?
+
+private List<Session> sessions = collections.synchronizedList(new ArrayList<>());
+
+LockFree 컬렉션: 락을 사용하지 않아도 안전한 컬렉션
+
+메모리 가시성 문제 : 다른 스레드에 의해 변경된 변수의 값을 관찰할 수 없다.
+
+volatile : 반드시 변수의 값을 메모리로부터 읽거나 쓰라고 하는 한정자...

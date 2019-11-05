@@ -1,0 +1,43 @@
+C	- 데니스 리치
+
+Java	- 제임스 고슬링
+	- 모든 운영체제에서 JVM을 통해 바이트 코드로 해석하기 때문에 호환성이 좋지만 C에 비해 성능차가 발생.
+
+
+
+Android
+Android Framework -> 프레임워크
+Linux  ->OS
+
+
+IOS
+Cocoa Touch Framework -> 프레임 워크
+MacOS  ->OS
+
+
+
+LLVM : C / swift 컴파일러 => 오류검사 또는 경고가 쉬움
+
+
+
+
+
+절차지향 프로그래밍 - C
+객체지향 프로그래밍 - C++(멀티패러다임), java
+
+
+C의 타입
+1) built-in type : int, char, double, float, short, long...
+2) user defined type : struct, enum, union
+
+
+Java의 타입
+1) primitive type : int, char, double, byte, boolean...		=>call by value
+2) reference type : Array, class, interface, enum		=>call by reference
+
+
+Java의 char는 2바이트이다.->Unicode이기 때문 (C의 char는 1바이트)
+Java는 unsigned 정수가 없다. (signed만 존재)->산술시프트만 가능.( >>(산술), >>>(논리))  ->정수의 경계를 고려해야 함
+reference type의 변수는 heap에 생성해야 하기 때문에 new를 사용한다.  
+(  int[] a = new int[]{1, 2, 3};  ,  int[] b = {1, 2, 3}->리터럴 문법 ) **리터럴문법은 배열의 초기화에만 사용됨.
+Java에는 const가 없다.대신 final을 사용한다.

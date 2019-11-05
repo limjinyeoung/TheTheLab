@@ -1,0 +1,15 @@
+동적할당
+-프로그래머가 원하는 시점에 메모리를 할당/해제할 수 있다.
+-malloc / free
+
+int n;
+int *p = (int*)malloc(sizeof(int));
+
+int a[10];
+int *ap = (int*)malloc(sizeof(int)*10);
+
+int b[3][10];
+int *bp[10] = (int (*)[10])malloc(sizeof(int[10] *3);
+
+
+free (p);

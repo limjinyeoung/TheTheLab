@@ -1,0 +1,7 @@
+직렬화 Serialization (marshaling)
+객체라는 추상적인 존재를 byte array로 변환해야 할 때,
+어떤 방법으로 변환할지 결정
+
+
+역직렬화 (unmarshaling)
+byte의 데이터를 객체로 변환하는 기술

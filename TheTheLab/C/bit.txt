@@ -1,0 +1,5 @@
+ascii - 영어 1byte / 한글 2byte 이상 / ... /	=> encoding (같은 값을 가지고 있을때 어떤 언어로 출력할지 결정)
+encoding 표준 : 유니코드 / multibyte
+
+windows => unicode(UTF-16_KR)
+mac, linux => unicode(UTF-8_KR)

@@ -1,0 +1,4 @@
+stack
+Deque<Integer> stack = new ArrayDeque<>()로 사용가능.
+stack.push(10);
+System.out.println(stack.pop());
